@@ -1,5 +1,3 @@
-let myStorage = window.localStorage;
-
 document.addEventListener("DOMContentLoaded", function() {
   let nameInput = document.querySelector("#name");
   let nameTarget = document.querySelector("#nameTarget");
@@ -8,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateValue(this.value, nameTarget);
   });
 
-  if (myStorage.getItem(nameTarget.id)) {
+  if (localStorage.getItem(nameTarget.id)) {
     updateValue(nameInput.value, nameTarget);
   }
 
@@ -19,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateValue(this.value, titleTarget);
   });
 
-  if (myStorage.getItem(titleTarget.id)) {
+  if (localStorage.getItem(titleTarget.id)) {
     updateValue(titleInput.value, titleTarget);
   }
 
@@ -30,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateValue(this.value, streetTarget);
   });
 
-  if (myStorage.getItem(streetTarget.id)) {
+  if (localStorage.getItem(streetTarget.id)) {
     updateValue(streetInput.value, streetTarget);
   }
 
@@ -41,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateValue(this.value, postalcodeTarget);
   });
 
-  if (myStorage.getItem(postalcodeTarget.id)) {
+  if (localStorage.getItem(postalcodeTarget.id)) {
     updateValue(postalcodeInput.value, postalcodeTarget);
   }
 
@@ -52,9 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateValue(this.value, cityTarget);
   });
 
-  console.log(myStorage.getItem(cityTarget));
-
-  if (myStorage.getItem(cityTarget.id)) {
+  if (localStorage.getItem(cityTarget.id)) {
     updateValue(cityInput.value, cityTarget);
   }
 
@@ -65,12 +61,12 @@ document.addEventListener("DOMContentLoaded", function() {
     updateValue(this.value, emailTarget);
   });
 
-  if (myStorage.getItem(emailTarget.id)) {
+  if (localStorage.getItem(emailTarget.id)) {
     updateValue(emailInput.value, emailTarget);
   }
 
   function updateValue(val, target) {
     target.innerHTML = val;
-    myStorage.setItem(target.id, val);
+    localStorage.setItem(target.id, val);
   }
 });
