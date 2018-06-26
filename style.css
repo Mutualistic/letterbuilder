@@ -1,0 +1,92 @@
+:root {
+  --base: 4px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: calc(var(--base) * 8);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 16px;
+  background: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.values {
+  max-width: 500px;
+  width: 100%;
+  background: white;
+  border-radius: 4px;
+  padding: calc(var(--base) * 6);
+  margin-bottom: calc(var(--base) * 8);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.data {
+  display: block;
+  margin-bottom: calc(var(--base) * 4);
+}
+
+.data_input {
+  display: block;
+  margin-top: var(--base);
+  font-size: inherit;
+  padding: var(--base);
+  width: 100%;
+}
+
+.paper {
+  width: 210mm;
+  height: 297mm;
+  position: relative;
+  background: white;
+}
+
+.letterhead {
+  text-align: right;
+  position: absolute;
+  top: 32mm;
+  width: 75mm;
+  right: 10mm;
+}
+
+.letterhead_name {
+  font-size: 20pt;
+  font-weight: bold;
+  margin: 0;
+}
+
+.letterhead_title {
+  font-weight: 300;
+  font-size: 18pt;
+  margin: 0;
+}
+
+.letterhead_info {
+  padding: 8mm 0;
+}
+
+.letterhead_street {
+  display: block;
+}
+
+.letterhead_email {
+  display: block;
+}
+
+@media print {
+  .values {
+    display: none;
+  }
+}
+
+@media print and (color) {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
