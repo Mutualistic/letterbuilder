@@ -38,5 +38,22 @@ document.addEventListener("DOMContentLoaded", function() {
       target.innerHTML = input.value;
       localStorage.setItem(target.id, input.value);
     });
+
+    if (getValueOfParam(input.id)) {
+      target.innerHTML = getValueOfParam(input.id);
+    }
   }
 });
+
+function getValueOfParam(name) {
+  let url = window.location.search.substring(1);
+  let vars = url.split("&");
+
+  for (let i = 0; i < vars.length; i++) {
+    let pair = vars[i].split("=");
+
+    if (pair[0] == name) {
+      return pair[1];
+    }
+  }
+}
