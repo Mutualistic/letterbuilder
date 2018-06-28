@@ -1,9 +1,11 @@
 :root {
   --base: 4px;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   padding: calc(var(--base) * 8);
