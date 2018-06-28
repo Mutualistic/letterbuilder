@@ -46,7 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     if (getValueOfParam(input.id)) {
-      target.innerHTML = getValueOfParam(input.id).replace("ASPACE", " ");
+      target.innerHTML = getValueOfParam(input.id)
+        .split("ASPACE")
+        .join(" ");
     }
   }
 });
@@ -61,7 +63,7 @@ const updatePrintLink = input => {
 
   let paramAttach = Object.entries(params).reduce(toUrlString, "");
   let urlForPrintservice = encodeURIComponent(
-    `${BASE_URL}?${paramAttach.replace(" ", "ASPACE")}`
+    `${BASE_URL}?${paramAttach.split(" ").join("ASPACE")}`
   );
 
   console.log(urlForPrintservice);
