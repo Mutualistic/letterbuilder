@@ -60,7 +60,9 @@ const updatePrintLink = input => {
     string.concat(`${keyValue[0]}=${keyValue[1]}&`);
 
   let paramAttach = Object.entries(params).reduce(toUrlString, "");
-  let urlForPrintservice = encodeURIComponent(`${BASE_URL}?${paramAttach}`);
+  let urlForPrintservice = encodeURIComponent(
+    `${BASE_URL}?${paramAttach.replace(" ", "%20")}`
+  );
 
   printButton.setAttribute(
     "href",
@@ -76,7 +78,7 @@ function getValueOfParam(name) {
     let pair = vars[i].split("=");
 
     if (pair[0] == name) {
-      return pair[1];
+      return decodeURIComponent(pair[1]);
     }
   }
 }
