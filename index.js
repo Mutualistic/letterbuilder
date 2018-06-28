@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     if (getValueOfParam(input.id)) {
-      target.innerHTML = getValueOfParam(input.id);
+      target.innerHTML = getValueOfParam(input.id).replace("ASPACE", " ");
     }
   }
 });
@@ -61,8 +61,10 @@ const updatePrintLink = input => {
 
   let paramAttach = Object.entries(params).reduce(toUrlString, "");
   let urlForPrintservice = encodeURIComponent(
-    `${BASE_URL}?${paramAttach.replace(" ", "%20")}`
+    `${BASE_URL}?${paramAttach.replace(" ", "ASPACE")}`
   );
+
+  console.log(urlForPrintservice);
 
   printButton.setAttribute(
     "href",
@@ -78,7 +80,7 @@ function getValueOfParam(name) {
     let pair = vars[i].split("=");
 
     if (pair[0] == name) {
-      return decodeURIComponent(pair[1]);
+      return pair[1];
     }
   }
 }
