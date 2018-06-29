@@ -1,6 +1,9 @@
 :root {
   --base: 4px;
   --main-color: #23e75d;
+
+  --border-color: #dadee3;
+  --border-radius: 2px;
 }
 
 * {
@@ -51,7 +54,10 @@ body {
   display: block;
   margin-top: var(--base);
   font-size: inherit;
-  padding: var(--base);
+
+  padding: calc(var(--base) * 2.5);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
   width: 100%;
 }
 
