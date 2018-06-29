@@ -4,6 +4,7 @@ const BASE_URL = 'https://lassediercks.github.io/sistente';
 const printButton = document.querySelector('#printbutton');
 
 let urlForPrintservice;
+let params = {};
 
 document.addEventListener('DOMContentLoaded', function() {
   const nameInput = document.querySelector('#name');
@@ -36,9 +37,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   syncValue(emailInput, emailTarget);
 
+  function updatePrintLink(input) {
+    params[input.id] = input.value;
+
+    const toUrlString = (string, keyValue) =>
+      string.concat(`${keyValue[0]}=${encodeURIComponent(keyValue[1])}&`);
+
+    let paramAttach = Object.entries(params).reduce(toUrlString, '');
+
+    urlForPrintservice = `${BASE_URL}/?${paramAttach}`;
+
+    console.log(urlForPrintservice);
+    return urlForPrintservice;
+  }
+
   function syncValue(input, target) {
     if (localStorage.getItem(target.id)) {
       target.innerHTML = localStorage.getItem(target.id);
+      input.value = localStorage.getItem(target.id);
+      updatePrintLink(input);
     }
 
     input.addEventListener('input', function() {
@@ -48,28 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (getValueOfParam(input.id)) {
-      let val = getValueOfParam(input.id);
-      target.innerHTML = val.split('+').join(' ');
+      let val = decodeURIComponent(getValueOfParam(input.id));
+      console.log({ val });
+      target.innerHTML = val;
     }
   }
-
-  let params = {};
-
-  const updatePrintLink = (input) => {
-    params[input.id] = input.value;
-
-    const toUrlString = (string, keyValue) =>
-      string
-        .concat(`${keyValue[0]}=${keyValue[1]}&`)
-        .split(' ')
-        .join('+');
-
-    let paramAttach = Object.entries(params).reduce(toUrlString, '');
-    urlForPrintservice = `${BASE_URL}?${paramAttach}`;
-
-    console.log(urlForPrintservice);
-    return urlForPrintservice;
-  };
 
   function getValueOfParam(name) {
     let url = window.location.search.substring(1);
@@ -84,6 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  const checkStatus = (response) => {
+    if (response.ok && response.status >= 200 && response.status < 300) {
+      return Promise.resolve(response);
+    }
+    return Promise.reject(response);
+  };
+
   function createPdf(body) {
     const blob = new Blob([body], { type: 'application/pdf' });
     const data = window.URL.createObjectURL(blob);
@@ -94,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // The actual download
     // var filename = "blah.pdf";
     link.href = data;
+    link.download = 'letterhead.pdf';
     console.log(link);
     document.body.appendChild(link);
     link.click();
@@ -106,11 +114,12 @@ document.addEventListener('DOMContentLoaded', function() {
       body: JSON.stringify({ url: url }),
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
       },
     };
 
     fetch(PRINT_SERVICE_URL, options)
+      .then(checkStatus)
       .then((response) => response.arrayBuffer())
       .then(createPdf);
   }
