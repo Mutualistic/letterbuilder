@@ -47,7 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     urlForPrintservice = `${BASE_URL}/?${paramAttach}`;
 
-    console.log(urlForPrintservice);
+    if (input.value) {
+      printButton.removeAttribute('disabled');
+    } else {
+      printButton.setAttribute('disabled', true);
+    }
+
     return urlForPrintservice;
   }
 
@@ -125,6 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   printButton.addEventListener('click', () => {
-    if (urlForPrintservice) downloadPdf(urlForPrintservice);
+    downloadPdf(urlForPrintservice);
   });
 });

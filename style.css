@@ -1,5 +1,6 @@
 :root {
   --base: 4px;
+  --main-color: #23e75d;
 }
 
 * {
@@ -9,9 +10,9 @@
 body {
   margin: 0;
   padding: calc(var(--base) * 8);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
-  background: grey;
+  background: whitesmoke;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,6 +27,19 @@ body {
   padding: calc(var(--base) * 6);
   margin-bottom: calc(var(--base) * 8);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.printbutton {
+  background: var(--main-color);
+  padding: calc(var(--base) * 4) calc(var(--base) * 4);
+  border: none;
+  color: inherit;
+  width: 100%;
+  font-size: inherit;
+}
+
+.printbutton[disabled] {
+  opacity: 0.3;
 }
 
 .data {
@@ -81,8 +95,14 @@ body {
 }
 
 @media print {
+  body {
+    padding: 0;
+  }
   .values {
     display: none;
+  }
+  .paper {
+    display: block;
   }
 }
 
