@@ -62,10 +62,10 @@ body {
 }
 
 .paper {
-  width: 210mm;
-  height: 297mm;
   position: relative;
   background: white;
+  width: 210mm;
+  height: 297mm;
 }
 
 .letterhead {
@@ -108,12 +108,15 @@ body {
     display: none;
   }
   .paper {
+    width: 210mm;
+    height: auto;
     display: block;
   }
 }
 
 @media print and (color) {
   * {
+    outline: 1px solid red;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
