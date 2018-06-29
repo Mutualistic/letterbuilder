@@ -1,7 +1,7 @@
 :root {
   --base: 4px;
   --main-color: #23e75d;
-
+  --dark: #26292b;
   --border-color: #dadee3;
   --border-radius: 2px;
 }
@@ -12,7 +12,7 @@
 
 body {
   margin: 0;
-  padding: calc(var(--base) * 8);
+  padding: calc(var(--base) * 8) calc(var(--base) * 8) 0 calc(var(--base) * 8);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
   background: whitesmoke;
@@ -20,6 +20,10 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+a {
+  color: var(--main-color);
 }
 
 .values {
@@ -61,6 +65,16 @@ body {
   width: 100%;
 }
 
+.footer {
+  background: var(--dark);
+  padding: calc(var(--base) * 8);
+  color: white;
+  width: 100%;
+}
+.footer_content {
+  margin: 0 auto;
+  max-width: 900px;
+}
 .paper {
   position: relative;
   background: white;
@@ -104,7 +118,8 @@ body {
   body {
     padding: 0;
   }
-  .values {
+  .values,
+  .footer {
     display: none;
   }
   .paper {
@@ -116,7 +131,6 @@ body {
 
 @media print and (color) {
   * {
-    outline: 1px solid red;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
