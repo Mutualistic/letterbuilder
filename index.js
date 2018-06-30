@@ -9,41 +9,18 @@ const printButton = document.querySelector('#printbutton');
 let urlForPrintservice;
 let params = {};
 
+const ElementList = [
+  'name',
+  'title',
+  'street',
+  'postalcode',
+  'city',
+  'email',
+  'storyText',
+];
+
 document.addEventListener('DOMContentLoaded', function() {
-  const nameInput = document.querySelector('#name');
-  const nameTarget = document.querySelectorAll('#nameTarget');
-
-  syncValue(nameInput, nameTarget);
-
-  const titleInput = document.querySelector('#title');
-  const titleTarget = document.querySelector('#titleTarget');
-
-  syncValue(titleInput, titleTarget);
-
-  const streetInput = document.querySelector('#street');
-  const streetTarget = document.querySelector('#streetTarget');
-
-  syncValue(streetInput, streetTarget);
-
-  const postalcodeInput = document.querySelector('#postalcode');
-  const postalcodeTarget = document.querySelector('#postalcodeTarget');
-
-  syncValue(postalcodeInput, postalcodeTarget);
-
-  const cityInput = document.querySelector('#city');
-  const cityTarget = document.querySelector('#cityTarget');
-
-  syncValue(cityInput, cityTarget);
-
-  const emailInput = document.querySelector('#email');
-  const emailTarget = document.querySelector('#emailTarget');
-
-  syncValue(emailInput, emailTarget);
-
-  const storyTextInput = document.querySelector('#storyText');
-  const storyTextTarget = document.querySelector('#storyTextTarget');
-
-  syncValue(storyTextInput, storyTextTarget);
+  ElementList.forEach(syncValue);
 
   function updatePrintLink(input) {
     params[input.id] = input.value;
@@ -74,16 +51,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function syncValue(input, target) {
-    if (localStorage.getItem(target.id)) {
-      setTargetContent(target, localStorage.getItem(target.id));
-      input.value = localStorage.getItem(target.id);
+  function syncValue(elname) {
+    let input = document.querySelector(`#${elname}`);
+    let target = document.querySelectorAll(`[data-target=${elname}]`);
+
+    if (localStorage.getItem(elname)) {
+      setTargetContent(target, localStorage.getItem(elname));
+      input.value = localStorage.getItem(elname);
       updatePrintLink(input);
     }
 
     input.addEventListener('input', function() {
       setTargetContent(target, input.value);
-      localStorage.setItem(target.id, input.value);
+      localStorage.setItem(elname, input.value);
       updatePrintLink(input);
     });
 

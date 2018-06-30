@@ -163,6 +163,9 @@ a {
     height: auto;
     display: block;
   }
+  .story {
+    display: none;
+  }
 }
 
 @media print and (color) {
