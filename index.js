@@ -1,8 +1,8 @@
-// const PRINT_SERVICE_URL = 'https://printmenow.herokuapp.com/endpoint';
-// const BASE_URL = 'https://lassediercks.github.io/sistente';
+const PRINT_SERVICE_URL = 'https://printmenow.herokuapp.com/endpoint';
+const BASE_URL = 'https://lassediercks.github.io/sistente';
 
-const PRINT_SERVICE_URL = 'http://localhost:3000/endpoint';
-const BASE_URL = 'http://localhost:8000';
+// const PRINT_SERVICE_URL = 'http://localhost:3000/endpoint';
+// const BASE_URL = 'http://localhost:8000';
 
 const printButton = document.querySelector('#printbutton');
 
