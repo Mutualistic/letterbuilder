@@ -8,27 +8,33 @@
     <title>Sistente</title>
     <script type="module" src='./index.js'></script>
     <link rel="stylesheet" href="style.css">
-
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+    </style>
 </head>
 
 <body>
 
     <div class="values">
-        <h2>Enter your Credentials</h2>
+        <h2>Basic info</h2>
 
         <label class="data">
             Name
             <input class="data_input" id="name" type="text">
         </label>
 
-
         <label class="data">
             Title
             <input class="data_input" id="title" type="text">
         </label>
 
-
-
+        <label class="data">
+            E-Mail
+            <input class="data_input" name="email" id="email" type="email">
+        </label>
+    </div>
+    <div class="values">
+        <h2>Letterhead</h2>
         <label class="data">
             Street
             <input class="data_input" name="StreetName" id="street" type="text">
@@ -45,12 +51,10 @@
             <input class="data_input" name="city" id="city" type="text">
         </label>
 
-        <label class="data">
-            E-Mail
-            <input class="data_input" name="email" id="email" type="email">
-        </label>
 
-        <button class="printbutton" id="printbutton" disabled href="">Download PDf</button>
+        <button class="printbutton" id="printbutton" disabled href="">
+            <div class="printbutton_loadingicon">|</div>
+            Download PDf</button>
 
     </div>
 
@@ -68,6 +72,19 @@
                 <span class="letterhead_email" id="emailTarget"></span>
             </div>
         </div>
+    </div>
+    <div class="values">
+        <h2>Instagram Story</h2>
+
+        <label class="data">
+            Text
+            <input class="data_input" id="storyText" type="text">
+        </label>
+
+    </div>
+    <div class="story">
+        <div class="story_text" id="storyTextTarget"></div>
+        <div class="story_name" id="nameTarget"></div>
     </div>
 
     <footer class="footer">

@@ -1,5 +1,8 @@
-const PRINT_SERVICE_URL = 'https://printmenow.herokuapp.com/endpoint';
-const BASE_URL = 'https://lassediercks.github.io/sistente';
+// const PRINT_SERVICE_URL = 'https://printmenow.herokuapp.com/endpoint';
+// const BASE_URL = 'https://lassediercks.github.io/sistente';
+
+const PRINT_SERVICE_URL = 'http://localhost:3000/endpoint';
+const BASE_URL = 'http://localhost:8000';
 
 const printButton = document.querySelector('#printbutton');
 
@@ -8,7 +11,7 @@ let params = {};
 
 document.addEventListener('DOMContentLoaded', function() {
   const nameInput = document.querySelector('#name');
-  const nameTarget = document.querySelector('#nameTarget');
+  const nameTarget = document.querySelectorAll('#nameTarget');
 
   syncValue(nameInput, nameTarget);
 
@@ -37,6 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   syncValue(emailInput, emailTarget);
 
+  const storyTextInput = document.querySelector('#storyText');
+  const storyTextTarget = document.querySelector('#storyTextTarget');
+
+  syncValue(storyTextInput, storyTextTarget);
+
   function updatePrintLink(input) {
     params[input.id] = input.value;
 
@@ -56,23 +64,32 @@ document.addEventListener('DOMContentLoaded', function() {
     return urlForPrintservice;
   }
 
+  function setTargetContent(target, value) {
+    if (target.length) {
+      target.forEach((el) => {
+        el.innerHTML = value;
+      });
+    } else {
+      target.innerHTML = value;
+    }
+  }
+
   function syncValue(input, target) {
     if (localStorage.getItem(target.id)) {
-      target.innerHTML = localStorage.getItem(target.id);
+      setTargetContent(target, localStorage.getItem(target.id));
       input.value = localStorage.getItem(target.id);
       updatePrintLink(input);
     }
 
     input.addEventListener('input', function() {
-      target.innerHTML = input.value;
+      setTargetContent(target, input.value);
       localStorage.setItem(target.id, input.value);
       updatePrintLink(input);
     });
 
     if (getValueOfParam(input.id)) {
       let val = decodeURIComponent(getValueOfParam(input.id));
-      console.log({ val });
-      target.innerHTML = val;
+      setTargetContent(target, val);
     }
   }
 
@@ -93,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (response.ok && response.status >= 200 && response.status < 300) {
       return Promise.resolve(response);
     }
+    console.log('rejected');
     return Promise.reject(response);
   };
 
@@ -102,18 +120,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const link = document.createElement('a');
 
-    console.log(typeof body);
     // The actual download
     // var filename = "blah.pdf";
     link.href = data;
     link.download = 'letterhead.pdf';
-    console.log(link);
     document.body.appendChild(link);
     link.click();
   }
 
   function downloadPdf(url) {
-    console.log(url);
     let options = {
       method: 'POST',
       body: JSON.stringify({ url: url }),
@@ -123,8 +138,14 @@ document.addEventListener('DOMContentLoaded', function() {
       },
     };
 
+    const setLoading = () => {
+      console.log('loading fired');
+      printButton.setAttribute('disabled', 'true');
+      printButton.classList.toggle('printbutton--loading');
+    };
+
     fetch(PRINT_SERVICE_URL, options)
-      .then(checkStatus)
+      .then(checkStatus, setLoading)
       .then((response) => response.arrayBuffer())
       .then(createPdf);
   }

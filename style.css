@@ -13,7 +13,7 @@
 body {
   margin: 0;
   padding: calc(var(--base) * 8) calc(var(--base) * 8) 0 calc(var(--base) * 8);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Lato', Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
   background: whitesmoke;
   display: flex;
@@ -37,12 +37,31 @@ a {
 }
 
 .printbutton {
+  font-weight: bold;
   background: var(--main-color);
   padding: calc(var(--base) * 4) calc(var(--base) * 4);
   border: none;
   color: inherit;
   width: 100%;
   font-size: inherit;
+  position: relative;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.printbutton_loadingicon {
+  visibility: hidden;
+  position: absolute;
+  left: calc(var(--base) * 5);
+  animation: spin ease-out 500ms infinite;
+}
+
+.printbutton--loading .printbutton_loadingicon {
+  visibility: visible;
 }
 
 .printbutton[disabled] {
@@ -114,6 +133,23 @@ a {
   display: block;
 }
 
+.story {
+  width: 540px;
+  background: white;
+  height: 960px;
+  padding: calc(var(--base) * 40) calc(var(--base) * 20) calc(var(--base) * 20)
+    calc(var(--base) * 20);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.story_text {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+}
 @media print {
   body {
     padding: 0;
