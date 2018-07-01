@@ -36,7 +36,7 @@ a {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
-.printbutton {
+.downloadButton {
   font-weight: bold;
   background: var(--main-color);
   padding: calc(var(--base) * 4) calc(var(--base) * 4);
@@ -53,18 +53,18 @@ a {
   }
 }
 
-.printbutton_loadingicon {
+.downloadButton_loadingicon {
   visibility: hidden;
   position: absolute;
   left: calc(var(--base) * 5);
   animation: spin ease-out 500ms infinite;
 }
 
-.printbutton--loading .printbutton_loadingicon {
+.downloadButton--loading .downloadButton_loadingicon {
   visibility: visible;
 }
 
-.printbutton[disabled] {
+.downloadButton[disabled] {
   opacity: 0.3;
 }
 

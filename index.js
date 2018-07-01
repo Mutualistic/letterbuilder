@@ -4,9 +4,16 @@ const BASE_URL = 'https://lassediercks.github.io/sistente';
 // const PRINT_SERVICE_URL = 'http://localhost:3000/endpoint';
 // const BASE_URL = 'http://localhost:8000';
 
-const printButton = document.querySelector('#printbutton');
+const PAPER_URL = 'paper.html';
+const STORY_URL = 'story.html';
 
-let urlForPrintservice;
+const downloadLetterheadButton = document.querySelector(
+  '#downloadLetterheadButton',
+);
+
+const downloadStoryButton = document.querySelector('#downloadStoryButton');
+
+let printParams;
 let params = {};
 
 const ElementList = [
@@ -20,9 +27,18 @@ const ElementList = [
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
-  ElementList.forEach(syncValue);
+  const populateTargetsFromUrlParams = (element, target, input) => {
+    const val = getValueOfParam(element);
 
-  function updatePrintLink(input) {
+    setTargetContent(target, decodeURIComponent(val));
+
+    if (input) {
+      localStorage.setItem(element, val);
+      input.value = val;
+    }
+  };
+
+  function updatePrintParams(input) {
     params[input.id] = input.value;
 
     const toUrlString = (string, keyValue) =>
@@ -30,15 +46,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let paramAttach = Object.entries(params).reduce(toUrlString, '');
 
-    urlForPrintservice = `${BASE_URL}/?${paramAttach}`;
+    printParams = `?${paramAttach}`;
 
-    if (input.value) {
-      printButton.removeAttribute('disabled');
+    if (input.value || downloadLetterheadButton) {
+      downloadLetterheadButton.removeAttribute('disabled');
     } else {
-      printButton.setAttribute('disabled', true);
+      downloadLetterheadButton.setAttribute('disabled', true);
     }
 
-    return urlForPrintservice;
+    return printParams;
   }
 
   function setTargetContent(target, value) {
@@ -57,19 +73,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (localStorage.getItem(elname)) {
       setTargetContent(target, localStorage.getItem(elname));
-      input.value = localStorage.getItem(elname);
-      updatePrintLink(input);
+      if (input) {
+        input.value = localStorage.getItem(elname);
+        updatePrintParams(input);
+      }
     }
 
-    input.addEventListener('input', function() {
-      setTargetContent(target, input.value);
-      localStorage.setItem(elname, input.value);
-      updatePrintLink(input);
-    });
+    if (input) {
+      input.addEventListener('input', function() {
+        setTargetContent(target, input.value);
+        localStorage.setItem(elname, input.value);
+        updatePrintParams(input);
+      });
+    }
 
-    if (getValueOfParam(input.id)) {
-      let val = decodeURIComponent(getValueOfParam(input.id));
-      setTargetContent(target, val);
+    if (getValueOfParam(elname)) {
+      populateTargetsFromUrlParams(elname, target, input);
     }
   }
 
@@ -94,8 +113,13 @@ document.addEventListener('DOMContentLoaded', function() {
     return Promise.reject(response);
   };
 
-  function createPdf(body) {
-    const blob = new Blob([body], { type: 'application/pdf' });
+  function createFile(body, type) {
+    let types = {
+      pdf: 'application/pdf',
+      png: 'image/png',
+    };
+
+    const blob = new Blob([body], { type: types[type] });
     const data = window.URL.createObjectURL(blob);
 
     const link = document.createElement('a');
@@ -103,15 +127,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // The actual download
     // var filename = "blah.pdf";
     link.href = data;
-    link.download = 'letterhead.pdf';
+    link.download = `letterhead.${type}`;
     document.body.appendChild(link);
     link.click();
   }
 
-  function downloadPdf(url) {
+  function fireDownload(url, type) {
     let options = {
       method: 'POST',
-      body: JSON.stringify({ url: url }),
+      body: JSON.stringify({ url: url, type: type }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json; charset=utf-8',
@@ -119,18 +143,27 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const setLoading = () => {
-      console.log('loading fired');
-      printButton.setAttribute('disabled', 'true');
-      printButton.classList.toggle('printbutton--loading');
+      downloadLetterheadButton.setAttribute('disabled', 'true');
+      downloadLetterheadButton.classList.toggle('printbutton--loading');
     };
 
     fetch(PRINT_SERVICE_URL, options)
       .then(checkStatus, setLoading)
       .then((response) => response.arrayBuffer())
-      .then(createPdf);
+      .then((file) => createFile(file, type));
   }
 
-  printButton.addEventListener('click', () => {
-    downloadPdf(urlForPrintservice);
-  });
+  if (downloadLetterheadButton) {
+    downloadLetterheadButton.addEventListener('click', () => {
+      fireDownload(`${BASE_URL}/${PAPER_URL}${printParams}`, 'pdf');
+    });
+  }
+
+  if (downloadStoryButton) {
+    downloadStoryButton.addEventListener('click', () => {
+      fireDownload(`${BASE_URL}/${STORY_URL}${printParams}`, 'png');
+    });
+  }
+
+  ElementList.forEach(syncValue);
 });
