@@ -8,25 +8,44 @@
     <title>Document</title>
     <script type="module" src='./index.js'></script>
     <link rel="stylesheet" href="style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300|Raleway:900" rel="stylesheet">
 </head>
 
 <body>
-    <div class="paper">
-        <div class="letterhead">
-            <h1 class="letterhead_name" data-target="name">
-            </h1>
-            <h2 class="letterhead_title" data-target="title"></h2>
 
-            <div class="letterhead_info">
-                <span class="letterhead_street" data-target="street"></span>
+    <div class="paper sistente-letter">
+        <div class="sistente-letter_head">
+            <span class="sistente-letter_to">an</span>
+            <span class="sistente-letter_reciever" data-target="letterRecieverName"></span>
+            <span class="sistente-letter_street" data-target="letterRecieverStreet"></span>
+            <span>
+                <span class="sistente-letter_postalcode" data-target="letterRecieverPostalCode"></span>
+                <span class="sistente-letter_city" data-target="letterRecieverCity"></span>
+            </span>
+            </span>
+        </div>
+
+
+
+        <div class="sistente-letter_wrap">
+            <div class="sistente-letter_date" data-target="letterDate"></div>
+            <div class="sistente-letter_subject" data-target="letterSubject"></div>
+            <div class="sistente-letter_content" data-target="letterContent"></div>
+        </div>
+
+        <div class="sistente-letter_info">
+            <img class="sistente-letter_logo" src="./img/logo.svg" alt="">
+            <span class="sistente-letter_companyName">Mutualistic</span>
+            <span class="sistente-letter_name" data-target="name"></span>
+            <span class="letterhead_street" data-target="street"></span>
+            <span>
                 <span class="letterhead_postalcode" data-target="postalcode"></span>
                 <span class="letterhead_city" data-target="city"></span>
-                <span class="letterhead_email" data-target="email"></span>
-            </div>
+            </span>
+            <br>
+            <span class="letterhead_email" data-target="email"></span>
         </div>
+
     </div>
 </body>
 

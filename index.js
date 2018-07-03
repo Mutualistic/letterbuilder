@@ -1,8 +1,9 @@
-const PRINT_SERVICE_URL = 'https://printmenow.herokuapp.com/endpoint';
-const BASE_URL = 'https://lassediercks.github.io/sistente';
+// const PRINT_SERVICE_URL = 'https://printmenow.herokuapp.com/endpoint';
+// const BASE_URL = 'https://lassediercks.github.io/sistente';
 
-// const PRINT_SERVICE_URL = 'http://localhost:3000/endpoint';
-// const BASE_URL = 'http://localhost:8000';
+// For local debugging
+const PRINT_SERVICE_URL = 'http://localhost:3000/endpoint';
+const BASE_URL = 'http://localhost:8000/';
 
 const PAPER_URL = 'paper.html';
 const STORY_URL = 'story.html';
@@ -18,12 +19,18 @@ let params = {};
 
 const ElementList = [
   'name',
-  'title',
   'street',
   'postalcode',
   'city',
   'email',
   'storyText',
+  'letterRecieverName',
+  'letterRecieverStreet',
+  'letterRecieverPostalCode',
+  'letterRecieverCity',
+  'letterSubject',
+  'letterDate',
+  'letterContent',
 ];
 
 document.addEventListener('DOMContentLoaded', function() {

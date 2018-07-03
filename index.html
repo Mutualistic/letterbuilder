@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sistente</title>
+    <title>ml</title>
     <script type="module" src='./index.js'></script>
     <link rel="stylesheet" href="style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300|Raleway:900" rel="stylesheet">
 </head>
 
 <body>
@@ -23,18 +21,8 @@
             <input class="data_input" id="name" type="text">
         </label>
 
-        <label class="data">
-            Title
-            <input class="data_input" id="title" type="text">
-        </label>
 
-        <label class="data">
-            E-Mail
-            <input class="data_input" name="email" id="email" type="email">
-        </label>
-    </div>
-    <div class="values">
-        <h2>Letterhead</h2>
+
         <label class="data">
             Street
             <input class="data_input" name="StreetName" id="street" type="text">
@@ -50,28 +38,92 @@
             City
             <input class="data_input" name="city" id="city" type="text">
         </label>
+        <label class="data">
+            E-Mail
+            <input class="data_input" name="email" id="email" type="email">
+        </label>
+
+
+    </div>
+
+    <div class="values">
+        <h2>Reciever</h2>
+        <label class="data">
+            Reciever Name
+            <input class="data_input" id="letterRecieverName" type="text">
+        </label>
+        <label class="data">
+            Reciever Street
+            <input class="data_input" id="letterRecieverStreet" type="text">
+        </label>
+
+        <label class="data">
+            Reciever Postalcode
+            <input class="data_input" id="letterRecieverPostalCode" type="text">
+        </label>
+
+        <label class="data">
+            Reciever City
+            <input class="data_input" id="letterRecieverCity" type="text">
+        </label>
+
+        <h2>Write Letter</h2>
+        <label class="data">
+            Subject
+            <input class="data_input" id="letterSubject" type="text">
+        </label>
+
+        <label class="data">
+            Date
+            <input class="data_input" id="letterDate" type="datetime">
+        </label>
+
+
+        <label class="data">
+            Content
+            <textarea class="data_input" id="letterContent" type="text" cols="30" rows="10"></textarea>
+        </label>
 
 
         <button class="downloadButton" id="downloadLetterheadButton" disabled href="">
             <div class="downloadButton_loadingicon">|</div>
             Download PDf</button>
-
     </div>
 
 
-    <div class="paper">
-        <div class="letterhead">
-            <h1 class="letterhead_name" data-target="name">
-            </h1>
-            <h2 class="letterhead_title" data-target="title"></h2>
+    <div class="paper ml-letter">
+        <div class="ml-letter_head">
+            <span class="ml-letter_to">an</span>
+            <span class="ml-letter_reciever" data-target="letterRecieverName"></span>
+            <span class="ml-letter_street" data-target="letterRecieverStreet"></span>
+            <span>
+                <span class="ml-letter_postalcode" data-target="letterRecieverPostalCode"></span>
+                <span class="ml-letter_city" data-target="letterRecieverCity"></span>
+            </span>
+            </span>
+        </div>
 
-            <div class="letterhead_info">
-                <span class="letterhead_street" data-target="street"></span>
+
+
+        <div class="ml-letter_wrap">
+            <div class="ml-letter_date" data-target="letterDate"></div>
+            <div class="ml-letter_subject" data-target="letterSubject"></div>
+            <div class="ml-letter_content" data-target="letterContent"></div>
+        </div>
+
+        <div class="ml-letter_info">
+            <img class="ml-letter_logo" src="./img/logo.svg" alt="">
+            <span class="ml-letter_companyName">Mutualistic</span>
+            <span class="ml-letter_name" data-target="name"></span>
+            <span class="letterhead_street" data-target="street"></span>
+            <span>
                 <span class="letterhead_postalcode" data-target="postalcode"></span>
                 <span class="letterhead_city" data-target="city"></span>
-                <span class="letterhead_email" data-target="email"></span>
-            </div>
+            </span>
+            <br>
+            <span class="letterhead_email" data-target="email"></span>
         </div>
+
     </div>
     <div class="values">
         <h2>Instagram Story</h2>
@@ -84,9 +136,9 @@
 
 
     </div>
-    <div class="story">
+    <div class="story ml-story">
         <div class="story_text" data-target="storyText"></div>
-        <div class="story_name" data-target="name"></div>
+        <img class="ml-story_logo" src="./img/logo.svg" alt="">
     </div>
 
     <footer class="footer">
@@ -97,7 +149,7 @@
 
             let me know on
             <a href="http://twitter.com/lassediercks">Twitter</a> or via
-            <a href="mailto:sistente@lassediercks.de">Mail</a> if you like this or if anything isn't working
+            <a href="mailto:ml@lassediercks.de">Mail</a> if you like this or if anything isn't working
         </div>
     </footer>
 </body>
