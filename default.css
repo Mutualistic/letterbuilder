@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab|Yeseva+One');
+
+:root {
+  --dark: #292529;
+}
+.df-letter {
+  color: var(--dark);
+  font-family: 'Josefin Slab', serif;
+  font-size: 14pt;
+  line-height: 1.6;
+  position: relative;
+  display: grid;
+  padding: 27mm 10mm 20mm 20mm;
+  justify-content: space-between;
+  grid-template-columns: 85mm minmax(auto, 75mm);
+  grid-template-rows: 80.45mm 1fr;
+}
+
+.df-letter_head {
+}
+
+.df-letter_reciever {
+  font-family: 'Yeseva One', cursive;
+}
+
+.df-letter_info {
+  text-align: right;
+}
+
+.df-letter_name {
+  font-family: 'Yeseva One', cursive;
+}
+
+.df-letter_wrap {
+  display: flex;
+  grid-column: 1/3;
+  padding-right: 10mm;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  align-content: flex-start;
+}
+.df-letter_content {
+  padding-top: 20mm;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.df-letter_subject {
+  font-weight: bold;
+}
+
+.df-story {
+  color: white;
+  background: var(--dark);
+  padding: 300px 150px;
+}
+
+.df-story_text {
+  font-size: 130px;
+  font-family: 'Yeseva One', cursive;
+  margin-bottom: 50px;
+}
+
+.df-story_name {
+  font-size: 40px;
+  font-weight: 300;
+  font-family: 'Josefin Slab', serif;
+}

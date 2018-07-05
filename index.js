@@ -5,8 +5,8 @@ const BASE_URL = 'https://lassediercks.github.io/Mutualistic';
 // const PRINT_SERVICE_URL = 'http://localhost:3000/endpoint';
 // const BASE_URL = 'http://localhost:8000/';
 
-const PAPER_URL = 'paper.html';
-const STORY_URL = 'story.html';
+const PAPER_URL = 'default-letter.html';
+const STORY_URL = 'default-story.html';
 
 const downloadLetterheadButton = document.querySelector(
   '#downloadLetterheadButton',
