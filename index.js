@@ -1,5 +1,5 @@
 const PRINT_SERVICE_URL = 'https://printmenow.herokuapp.com/endpoint';
-const BASE_URL = 'https://lassediercks.github.io/sistente';
+const BASE_URL = 'https://lassediercks.github.io/Mutualistic';
 
 // For local debugging
 // const PRINT_SERVICE_URL = 'http://localhost:3000/endpoint';
