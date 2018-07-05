@@ -1,11 +1,9 @@
 :root {
   --base: 4px;
-  --main-color: #0fd8bb;
-  --yellow: #ffc83e;
-  --dark: #2c2c30;
   --border-color: #dadee3;
   --border-radius: 2px;
-  --font-family-highlight: 'Raleway', sans-serif;
+  --main-color: #d546cd;
+  --dark: #2c2c30;
 }
 
 * {
@@ -16,7 +14,8 @@ body {
   color: var(--dark);
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   background: whitesmoke;
   display: flex;
@@ -94,10 +93,12 @@ a {
   color: white;
   width: 100%;
 }
+
 .footer_content {
   margin: 0 auto;
   max-width: 900px;
 }
+
 .paper {
   position: relative;
   background: white;
@@ -109,17 +110,10 @@ a {
   body {
     padding: 0;
   }
-  .values,
-  .footer {
-    display: none;
-  }
   .paper {
     width: 210mm;
     height: 296mm;
     display: block;
-  }
-  .story {
-    display: none;
   }
 }
 
@@ -129,104 +123,8 @@ a {
     print-color-adjust: exact;
   }
 }
-
-/* Branding */
-
-.ml-letter {
-  position: relative;
-  padding-top: 35mm;
-  padding-left: 20mm;
-  font-size: 12pt;
-  line-height: 10pt;
-}
-.ml-letter_head {
-  display: flex;
-  flex-direction: column;
-  font-size: 8pt;
-  margin-bottom: 15mm;
-}
-
-.ml-letter_to {
-  font-size: 40pt;
-  line-height: 40pt;
-  font-style: italic;
-  color: var(--main-color);
-  font-family: var(--font-family-highlight);
-}
-
-.ml-letter_reciever {
-  font-size: 12pt;
-  margin-bottom: 1.5mm;
-}
-
-.ml-letter_wrap {
-  width: 100mm;
-}
-
-.ml-letter_date {
-  font-size: 8pt;
-  line-height: 12pt;
-  margin-bottom: 1.5mm;
-}
-
-.ml-letter_subject {
-  margin-bottom: 11mm;
-}
-
-.ml-letter_content {
-  white-space: pre-wrap;
-  font-size: 10pt;
-  line-height: 16pt;
-}
-
-.ml-letter_logo {
-  width: 20mm;
-  margin-bottom: 2.5mm;
-}
-
-.ml-letter_name {
-  font-size: 12pt;
-  font-weight: bold;
-  line-height: 18pt;
-}
-
-.ml-letter_companyName {
-  font-family: var(--font-family-highlight);
-  font-size: 18pt;
-  margin-bottom: 11mm;
-}
-
-.ml-letter_info {
-  position: absolute;
-  right: 10mm;
-  bottom: 10mm;
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  font-size: 8pt;
-  line-height: 12pt;
-}
-
-/* Story */
-
-.ml-story_logo {
-  width: 100px;
-}
-
 .story {
   margin: 0 auto;
   width: 1080px;
   height: 1920px;
-  background: white;
-  padding: calc(var(--base) * 40) calc(var(--base) * 20) calc(var(--base) * 20)
-    calc(var(--base) * 20);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.story_text {
-  font-size: 120px;
-  font-family: var(--font-family-highlight);
 }

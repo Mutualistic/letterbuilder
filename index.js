@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // The actual download
     // var filename = "blah.pdf";
     link.href = data;
-    link.download = `letterhead.${type}`;
+    link.download = `Mutualistic.${type}`;
     document.body.appendChild(link);
     link.click();
   }
