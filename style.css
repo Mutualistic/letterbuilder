@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:900');
+
 :root {
   --base: 4px;
   --border-color: #dadee3;
   --border-radius: 2px;
   --main-color: #d546cd;
   --dark: #2c2c30;
+  --content-width: 500px;
+  --shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -28,22 +32,52 @@ a {
   color: var(--main-color);
 }
 
+.topbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: calc(var(--base) * 4);
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.logo {
+  margin-right: calc(var(--base) * 2);
+  width: 40px;
+}
+.logo-name {
+  font-family: 'Raleway', sans-serif;
+}
+
+.header {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: calc(var(--base) * 6);
+  line-height: 1.2;
+}
+.header_headline {
+  margin: 0;
+  padding: 0;
+}
+
+/* Interface */
 .values {
-  max-width: 500px;
+  max-width: var(--content-width);
   width: 100%;
   background: white;
   border-radius: 4px;
   padding: calc(var(--base) * 6);
   margin-bottom: calc(var(--base) * 8);
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
 }
 
 .downloadButton {
   font-weight: bold;
+  color: white;
   background: var(--main-color);
+  border-radius: var(--border-radius);
   padding: calc(var(--base) * 4) calc(var(--base) * 4);
   border: none;
-  color: inherit;
   width: 100%;
   font-size: inherit;
   position: relative;
